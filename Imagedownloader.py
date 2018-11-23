@@ -7,6 +7,7 @@ import json
 keyword = input("Enter the keyword of images: ")
 # dl_amount = input("Enter the amount of images you want to download: ")
 
+# replace whitepace to + sign to fit to google search query
 query = re.sub("\s+", "+", keyword.strip())
 
 # header to prevent 403
@@ -14,7 +15,10 @@ header = {
     'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 "
                   "Safari/537.36"}
 
-url = "https://www.google.com/search?q=" + query + "&newwindow=1&tbm=isch"
+prefix = "https://www.google.com/search?q="
+suffix = "&newwindow=1&tbm=isch"
+
+url = prefix + query + suffix
 
 soup_url = urllib.request.urlopen(urllib.request.Request(url, headers=header))
 soup = BeautifulSoup(soup_url, "html.parser")
