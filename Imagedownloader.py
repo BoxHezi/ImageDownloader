@@ -53,7 +53,9 @@ for i, (image_link, image_type) in enumerate(image_array):
         if image_type == "":
             image_type = "jpg"
 
-        file = open(os.path.join(query_dir, query + " (" + str(i + 1)) + ")." + image_type, "wb")
+        file_name = re.sub("[\W]+", "", query)
+
+        file = open(os.path.join(query_dir, file_name + "(" + str(i + 1)) + ")." + image_type.strip(), "wb")
         file.write(raw_image)
         file.close()
 
